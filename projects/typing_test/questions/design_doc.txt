@@ -1,0 +1,139 @@
+Text File questions
+
+
+
+Problem 01: Sample Paragraphs
+
+
+
+- Which functions from utils.py will you use for interacting with the sample_paragraphs.txt file?
+	I will use the strip function
+
+
+
+
+Problem 02: Words Per Minute
+
+
+
+- Given a long string that contains a full paragraph (e.g. "This is my name. It is Bob. Also, I have a cat named Troy."), what function will you use to separate a string containing a full paragraph into its individual words?
+	we can use the split function
+
+
+
+
+- What is the calculation you will use in order to measure Words Per Minute speed? (You can describe your formula.)
+	len(typed_string) / 5 /(end_time - start_time) / 60 
+
+
+
+
+- What is the calculation you will use in order to measure accuracy? (You can describe your formula.)
+	accuracy_percentage = (count_how_many_word_correct / word_len) * 100
+
+
+
+Problem 03: Pig Latin
+
+
+
+- How will you identify that a word starts with a consonant cluster? 
+	if word[I] not in ['a', 'e', 'i', 'o', 'u']
+ 
+
+
+Problem 04: Autocorrect Skeleton
+
+
+
+- How will you calculate the difference scores between the user input string and each valid word, and determine which difference is the smallest?
+	the score_function, which pass in two string, will give us a number which represent "the difference" between the input string and each valid word. The smallest number represents the smallest difference. 
+
+
+
+
+Problem 05: Score Function 
+
+
+
+- What will your base case be?
+	1. string1 or string2 is None, return result
+	2. string1 == string2 0
+
+
+- Identify two example inputs which fall into different recursive calls. In each of these cases, what recursive call should be made?
+	If word1[0] == word2[0]:
+    		return swap_score(word1[1:], word2[1:])
+	else:
+    		return 1 + swap_score(word1[1:],word2[1:])
+
+	Examples:
+	swap_score(‘ra’, ‘ra’)
+	For the first recursive call if the left most alphabet is the same for word1 and word2.
+
+	swap_score(‘w’, ‘ra’)
+	For the second recursive call, increment one to the total output when the leftmost alphabet is not the same for word1 and word2.
+
+
+
+Problem 06: 
+
+
+
+- What does each of the recursive calls in the skeleton represent? Are there additional cases which don't fit into the three already given?
+	The first one represent adding character. The second one represent removing character. The third one is too substitute.  
+
+
+- If we called score_function("bot", "boot"), list a series of successive recursive calls we would go through to reach the base case. For example, if we called score_function("add", "aadd"), one step could be score_function("add", "aadd") -> score_function("add", "add").
+	score_function("bot", "boot") --> score_function("boot", "boot")
+	an "o" is adding in "bot"
+
+
+
+- Based on your above list of recursive calls, classify each step as an add, remove, a swap, or something else.
+	if is adding a word, should return score_function(, word2)
+
+
+
+
+
+- Why would your function choose this sequence of recursive calls over another?
+	
+
+
+
+Problem 07: Accuracy
+
+
+
+- In your own words, why do we need to improve the accuracy of our existing score_function? In other words, what is the problem that we are trying to solve?
+	In our existing score_function, there is multiple valid words that have equal difference from the input string. However, in reality, there are words more likely to be the intended word compared to others. Therefore, we have to consider how far the letter that are being substituted from the letter that are being replaced. So, we have to improve our score function to take into account  how far the letter being substituted in. 
+
+
+- How can you adapt your score function from the previous problem to take into account key distances?
+ (Hint: which recursive call will need to be modified?)
+	we should multiple the key in question # 4
+
+
+
+
+Problem 08: Efficiency
+
+
+
+- What data structure will you use to store all of the differences that score_function has already calculated?
+	Use map to store all the functions. 
+
+
+- What types of values will this data structure contain?
+	It contains two variables. One is the key, the other is value. 
+
+
+
+- Using the data structure you described, given a pair of words, how will you check whether score_function has already been called on that pair of words? If so, how will you access the already calculated difference?
+	If this function is not in the map, we put it into the map. If it is already in the map, we use key to get it.
+
+
+
+
+
